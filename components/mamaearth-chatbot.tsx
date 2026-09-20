@@ -2,9 +2,10 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ContactShadows, Float, OrbitControls } from '@react-three/drei'
-import { Leaf, MessageCircle, Mic, MicOff, Phone, PhoneOff, RotateCcw, Sparkles, Volume2, X } from 'lucide-react'
+import { MessageCircle, Mic, MicOff, Phone, PhoneOff, RotateCcw, Sparkles, Volume2, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { Group } from 'three'
+import { MamaearthMark } from './mamaearth-logo'
 
 function MamaMascot() {
   const group = useRef<Group>(null)
@@ -52,7 +53,7 @@ export function MamaearthChatbot() {
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-4 sm:bottom-8 sm:right-8">
       {open && <section className="flex h-[min(650px,calc(100vh-116px))] w-[min(390px,calc(100vw-32px))] flex-col overflow-hidden rounded-[30px] border border-[#dfead2] bg-[#fffdf8] shadow-[0_24px_80px_rgba(44,76,36,0.22)]" aria-label="Mamaearth voice support">
         <header className="flex items-center justify-between border-b border-[#dcebd2] bg-[#e8f3d9] px-5 py-4">
-          <div className="flex items-center gap-3"><div className="grid size-11 place-items-center rounded-full bg-[#6b9b58] text-white"><Leaf aria-hidden="true" size={22} /></div><div><p className="font-semibold text-[#29422c]">mama</p><p className="text-xs text-[#5f795b]">Natural care support</p></div></div>
+          <div className="flex items-center gap-3"><MamaearthMark size={40} /><div><p className="font-semibold text-[#29422c]">mama</p><p className="text-xs text-[#5f795b]">Natural care support</p></div></div>
           <button type="button" onClick={() => { setOpen(false); endCall() }} className="grid size-9 place-items-center rounded-full text-[#5f795b] hover:bg-white/60" aria-label="Close voice support"><X size={18} /></button>
         </header>
 

@@ -1,9 +1,25 @@
 import { MamaearthChatbot } from '@/components/mamaearth-chatbot'
+import { MamaearthLogo } from '@/components/mamaearth-logo'
 
 export default function Page() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#fbfaf5] text-[#283c2b]">
-      <section className="relative flex min-h-screen items-center px-6 py-20 sm:px-12 lg:px-24">
+      <header className="relative z-10 flex items-center justify-between px-6 py-6 sm:px-12 lg:px-24">
+        <MamaearthLogo size={38} tagline />
+        <nav className="hidden items-center gap-8 text-sm font-medium text-[#3c513d] md:flex">
+          <a href="#" className="hover:text-[#547e45]">Skin</a>
+          <a href="#" className="hover:text-[#547e45]">Hair</a>
+          <a href="#" className="hover:text-[#547e45]">Baby Care</a>
+          <a href="#" className="hover:text-[#547e45]">Rewards</a>
+        </nav>
+        <button
+          type="button"
+          className="rounded-full bg-[#547e45] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_22px_rgba(67,108,51,0.24)] transition hover:bg-[#3f6b2e]"
+        >
+          Shop Now
+        </button>
+      </header>
+      <section className="relative flex min-h-[calc(100vh-88px)] items-center px-6 py-16 sm:px-12 lg:px-24">
         <div className="absolute -left-32 -top-36 size-[420px] rounded-full bg-[#edf5e4]" />
         <div className="absolute -bottom-40 right-[-8%] size-[480px] rounded-full bg-[#f6ead5]" />
         <div className="relative mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
