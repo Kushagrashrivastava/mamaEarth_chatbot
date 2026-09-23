@@ -2,15 +2,21 @@ import { NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
 
-// Groq's free-tier neural TTS. Swap the voice name for another Orpheus voice
-// (e.g. "leah", "jess", "leo", "dan", "mia", "zac", "zoe") to change how Mama sounds.
-const GROQ_TTS_MODEL = 'canopylabs/orpheus-v1-english'
-const GROQ_TTS_VOICE = 'tara'
+// ElevenLabs TTS. Free tier: 10,000 characters/month, recurring, no credit card.
+// ELEVENLABS_VOICE_ID picks which voice speaks — see .env.local.example for how to find one.
+const ELEVENLABS_MODEL = 'eleven_multilingual_v2'
 
 export async function POST(request: Request) {
-  const apiKey = process.env.GROQ_API_KEY
-  if (!apiKey) {
-    return NextResponse.json({ error: 'GROQ_API_KEY is not configured.' }, { status: 500 })
+  const apiKey = process.env.ELEVENLABS_API_KEY
+  const voiceId = process.env.ELEVENLABS_VOICE_ID
+  if (!apiKey || !voiceId) {
+    return NextResponse.json(
+      {
+        error:
+          'ElevenLabs is not configured yet — add ELEVENLABS_API_KEY and ELEVENLABS_VOICE_ID to .env.local (see .env.local.example) and restart the dev server.',
+      },
+      { status: 500 },
+    )
   }
 
   let body: { text?: string }
@@ -26,35 +32,35 @@ export async function POST(request: Request) {
   }
 
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/audio/speech', {
+    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        'xi-api-key': apiKey,
         'Content-Type': 'application/json',
+        Accept: 'audio/mpeg',
       },
       body: JSON.stringify({
-        model: GROQ_TTS_MODEL,
-        input: text,
-        voice: GROQ_TTS_VOICE,
-        response_format: 'wav',
+        text,
+        model_id: ELEVENLABS_MODEL,
+        voice_settings: { stability: 0.5, similarity_boost: 0.75 },
       }),
     })
 
     if (!response.ok) {
       const detail = await response.text()
-      console.error('Groq TTS error', response.status, detail)
+      console.error('ElevenLabs TTS error', response.status, detail)
       return NextResponse.json({ error: 'Text-to-speech is unavailable right now.' }, { status: 502 })
     }
 
     const audio = await response.arrayBuffer()
     return new NextResponse(audio, {
       headers: {
-        'Content-Type': 'audio/wav',
+        'Content-Type': 'audio/mpeg',
         'Cache-Control': 'no-store',
       },
     })
   } catch (error) {
-    console.error('Failed to reach Groq TTS API', error)
+    console.error('Failed to reach ElevenLabs API', error)
     return NextResponse.json({ error: 'Could not reach the speech service.' }, { status: 502 })
   }
 }

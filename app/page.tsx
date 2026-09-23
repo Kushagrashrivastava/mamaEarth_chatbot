@@ -26,14 +26,14 @@ export default function Page() {
           <div className="max-w-xl">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#d5e5c9] bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#64835d]"><span className="size-2 rounded-full bg-[#83ae68]" /> Conscious care, made simple</div>
             <h1 className="max-w-lg text-5xl font-semibold leading-[1.04] tracking-[-0.05em] text-[#29422c] sm:text-7xl">Goodness that feels <span className="font-serif italic text-[#709a5d]">like you.</span></h1>
-            <p className="mt-7 max-w-md text-lg leading-8 text-[#6b7866]">Discover gentle, thoughtful care for your skin, hair, and everyday rituals. Mama is here whenever you need a little guidance.</p>
+            <p className="mt-7 max-w-md text-lg leading-8 text-[#6b7866]">Discover gentle, thoughtful care for your skin, hair, and everyday rituals. Arjun is here whenever you need a little guidance.</p>
             <div className="mt-9 flex flex-wrap items-center gap-3 text-sm text-[#587052]"><div className="rounded-full bg-[#edf5e5] px-4 py-2">Plant-first ingredients</div><div className="rounded-full bg-[#f7eddc] px-4 py-2">Kind to you & earth</div></div>
           </div>
           <div className="relative min-h-[350px] overflow-hidden rounded-[40px] bg-[#e9f2df] p-10 sm:min-h-[480px]">
             <div className="absolute right-8 top-8 max-w-[170px] rounded-2xl rounded-br-sm bg-white/90 px-4 py-3 text-sm leading-6 text-[#496148] shadow-sm">Your best skin day starts with a little care.</div>
             <div className="absolute bottom-0 left-1/2 h-[90%] w-[90%] -translate-x-1/2"><div className="h-full w-full rounded-[50%] bg-[#d7e9c8]" /></div>
             <div className="relative z-10 h-[330px] sm:h-[450px]"><MascotPreview /></div>
-            <div className="absolute bottom-7 left-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#76956c]">Meet Mama</div>
+            <div className="absolute bottom-7 left-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#76956c]">Meet Arjun</div>
           </div>
         </div>
       </section>
